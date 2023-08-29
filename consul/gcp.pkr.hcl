@@ -15,6 +15,8 @@ source "googlecompute" "debian_11" {
 
   source_image_family = "laratechs-debian-11"
   image_family        = "laratechs-consul-debian-11"
+  image_name   = "laratechs-consul-{{timestamp}}"
+
 
   subnetwork   = "packer"
 }
