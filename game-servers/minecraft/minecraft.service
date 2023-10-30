@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=minecraft
+ExecStart=/usr/bin/env java -jar /etc/minecraft/server.jar
+WorkingDirectory=/etc/minecraft
+
+[Install]
+WantedBy=multi-user.target

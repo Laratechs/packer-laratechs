@@ -1,0 +1,14 @@
+[Unit]
+Description=Terraria Server
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=terraria
+ExecStart=/etc/terraria/TerrariaServer.bin.x86_64 -config /etc/terraria/config.txt
+
+[Install]
+WantedBy=multi-user.target

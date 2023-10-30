@@ -1,0 +1,12 @@
+autocreate=3
+world=/etc/terraria/worlds/world_name.wld
+worldpath=/etc/terraria/worlds/
+worldname=world_name
+difficulty=0
+maxplayers=8
+port=7777
+motd=Please don’t cut the purple trees!
+secure=1
+banlist=banlist.txt
+npcstream=60
+
