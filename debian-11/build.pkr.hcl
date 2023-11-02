@@ -1,18 +1,35 @@
 build {
+   hcp_packer_registry {
+    bucket_name = "debian-11-base"
+    description = <<EOT
+Debian 11 base image for servers.
+    EOT
+    bucket_labels = {
+      "maintained_by" = "benjamin.lara"
+      "os"            = "Debian",
+      "version"       = "11",
+    }
+
+    build_labels = {
+      "build-time" = timestamp()
+      "build-name" = "debian-11-base"
+    }
+  }
+
   sources = ["sources.googlecompute.debian_11"]
 
   # Update packages and install security updates
   provisioner "shell" {
-    scripts = ["scripts/update-packages.sh"]
+    scripts = ["${path.root}/scripts/update-packages.sh"]
   }
 
   # Install and configure logging agent
   provisioner "shell" {
-    scripts = ["scripts/setup-google-stackdriver.sh"]
+    scripts = ["${path.root}/scripts/setup-google-stackdriver.sh"]
   }
 
   # Setup HashiCorp APT repository
   provisioner "shell" {
-    scripts = ["scripts/setup-hashicorp-repo.sh"]
+    scripts = ["${path.root}/scripts/setup-hashicorp-repo.sh"]
   }
 }

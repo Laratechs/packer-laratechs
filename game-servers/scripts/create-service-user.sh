@@ -36,6 +36,6 @@ fi
 echo "Username: $username";
 echo "Path: $path";
 
-sudo useradd -r -m minecraft
+sudo useradd -r -m $username
 
-sudo chown -R minecraft:minecraft $path
+sudo chown -R $username:$username $path

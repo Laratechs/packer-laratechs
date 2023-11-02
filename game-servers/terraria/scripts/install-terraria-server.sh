@@ -11,3 +11,6 @@ sudo mv /tmp/terraria-server/1449/Linux/* /etc/terraria
 sudo chmod u+x /etc/terraria/TerrariaServer.bin.x86_64
 
 sudo touch /etc/terraria/banlist.txt
+
+sudo systemctl daemon-reload
+sudo systemctl enable terraria
