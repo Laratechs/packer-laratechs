@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    googlecompute = {
-      version = ">= 1.1.1"
-      source = "github.com/hashicorp/googlecompute"
-    }
-  }
-}
-
 data "hcp-packer-image" "debian-11-base" {
   bucket_name     = "debian-11-base"
   channel         = "latest"

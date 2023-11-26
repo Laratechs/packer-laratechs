@@ -36,19 +36,19 @@ Terraria server base image based on Debian 11.
     ]
   }
 
-  provisioner "shell" {
-    scripts = ["${path.root}/scripts/install-terraria-server.sh"]
-  }
-
   provisioner "file" {
-    source      = "${path.root}/config.txt"
-    destination = "/tmp/config.txt"
+    source      = "${path.root}/server"
+    destination = "/tmp/server"
   }
 
   provisioner "shell" {
     inline = [
-      "sudo mv /tmp/config.txt /etc/terraria/config.txt"
+      "sudo mv /tmp/server /etc/terraria" 
     ]
+  }
+
+  provisioner "shell" {
+    scripts = ["${path.root}/scripts/install-terraria-server.sh"]
   }
 
   provisioner "shell" {

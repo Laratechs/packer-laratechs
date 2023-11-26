@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    googlecompute = {
-      version = ">= 1.1.1"
-      source  = "github.com/hashicorp/googlecompute"
-    }
-  }
-}
-
 source "googlecompute" "debian_11" {
   project_id   = "game-svcs"
   source_image = "debian-11-bullseye-v20231010"

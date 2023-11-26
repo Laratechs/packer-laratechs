@@ -18,18 +18,23 @@ Debian 11 base image for servers.
 
   sources = ["sources.googlecompute.debian_11"]
 
+  # Setup HashiCorp APT repository
+  provisioner "shell" {
+    scripts = ["${path.root}/scripts/setup-hashicorp-repo.sh"]
+  }
+
   # Update packages and install security updates
   provisioner "shell" {
     scripts = ["${path.root}/scripts/update-packages.sh"]
   }
 
+  # Install Google Cloud SDK
+  provisioner "shell" {
+    scripts = ["${path.root}/scripts/install-google-cloud-sdk.sh"]
+  }
+
   # Install and configure logging agent
   provisioner "shell" {
     scripts = ["${path.root}/scripts/setup-google-stackdriver.sh"]
-  }
-
-  # Setup HashiCorp APT repository
-  provisioner "shell" {
-    scripts = ["${path.root}/scripts/setup-hashicorp-repo.sh"]
   }
 }

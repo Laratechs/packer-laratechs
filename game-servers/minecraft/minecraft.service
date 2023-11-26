@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=minecraft
-ExecStart=/usr/bin/env java -jar /etc/minecraft/server.jar
+ExecStart=/etc/minecraft/start-server.sh
 WorkingDirectory=/etc/minecraft
 
 [Install]
