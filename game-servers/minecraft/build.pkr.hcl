@@ -56,4 +56,9 @@ Minecraft server base image based on Debian 11.
     scripts = ["${path.cwd}/game-servers/scripts/create-service-user.sh"]
     execute_command = "chmod +x {{ .Path }}; {{ .Path }} -u minecraft -p /etc/minecraft"
   }
+
+  provisioner "shell" {
+    scripts = ["${path.root}/scripts/crontab-setup.sh"]
+  }
+
 }
