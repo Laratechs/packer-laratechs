@@ -21,7 +21,7 @@ download_backup() {
     echo "Backup downloaded successfully."
   else
     echo "Backup for $save_name does not exist in GCS. Generating first-time backup."
-    /etc/terraria/generate_backup.sh "$save_name"
+    /etc/terraria/generate_backup.sh
   fi
 }
 

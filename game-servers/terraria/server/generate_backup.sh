@@ -2,6 +2,7 @@
 
 FOLDER_TO_ZIP="/etc/terraria"
 GCS_BUCKET="laratechs-game-backups"
+CONFIG_FILE="/tmp/game_instance_id"
 
 archive_folder() {
   local folder_path="$1"
@@ -20,12 +21,21 @@ upload_to_gcs() {
 
 # Main function
 main() {
-  if [ -z "$1" ]; then
-    echo "Usage: $0 <save_name>"
+  if [ -f "$CONFIG_FILE" ]; then
+    # Read save name from the configuration file
+    local save_name=$(cat $CONFIG_FILE)
+  else
+    # If the configuration file doesn't exist, use Google Cloud Metadata
+    local save_name=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/game_instance_id)
+  fi
+
+  if [ -z "$save_name" ]; then
+    echo "Save name not found in config file or game instance metadata. Exiting."
+    echo "Config file: Please provide the instance_id in a plain text file @ /tmp/game_instance_id."
+    echo "Metadata: Please provide a key 'game_instance_id' with its value as the save name in the instance's custom metadata."
     exit 1
   fi
 
-  local save_name="$1"
   local archive_name="$save_name.backup"
 
   archive_folder /etc/terraria "$archive_name"
